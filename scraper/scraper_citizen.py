@@ -47,6 +47,7 @@ def get_data(url: str, driver: webdriver.Chrome):
             candidate_dict["Party"] = str(
                 candidate.find("td", class_="text-uppercase").text.lower()
             ).capitalize()
+            candidate_dict["Source"] = url
             candidate_dict["UpdatedAt"] = str(datetime.now())
             data.append(candidate_dict)
     except:
