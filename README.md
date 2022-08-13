@@ -1,19 +1,29 @@
 <h1 align="center"> Presidential Elections Watch </h1>
 
-Lets have fun with some election data.
+<p align="center">
+    <img height=500 src="images/hw_1.jpg">
+</p>
+
 
 ## <b>Description</b>
+This is a Mechatronics hardware engineer's way of monitoring the presidential poll. The system is made up of three subsystems
+1. [Scraper](scraper/)
+2. [API](api/)
+3. [Hardware and Firmware](hardware/README.md)
+### 1. Scraper
 Scrape presidential tally election data off either:
 1. [Citizen Tv's election portal](https://elections.citizen.digital/). 
 2. [BBC News](https://www.bbc.com/news/world-africa-62444316)
+public portals and stores this to a csv file.
 
-And provides a simple API interface to the data.
+### 2. API
+Provides a simple API interface to the scraped data. 
 
 ## <b>Prerequisites</b>
 1. [Python](https://www.python.org/downloads/)
 2. [Docker and Docker Compose](https://docs.docker.com/get-docker/)
 
-## <b>Setup</b>
+## <b>API and Scraper Setup</b>
 <details>
 <summary>Click to expand!</summary>
 
@@ -39,10 +49,11 @@ Schedule the scraper to run every `n`th duration with cron. In my case i ran the
 ```
 #### Run the API server
 ```bash
-$ uvicorn api.main:app --reload
+$ uvicorn api.main:app
 ```
 
 ### 2. Docker
+Alternatively you could setup the API with docker:
 #### Schedule the scraper
 Schedule the scraper to run at your preferred duration as described in the local installation section.
 
@@ -51,6 +62,7 @@ Schedule the scraper to run at your preferred duration as described in the local
 $ docker compose up -d --build
 ```
 </details>
+
 
 ### 3.Check the API
 #### 1. <b>Presidential Results endpoint</b>
@@ -117,6 +129,38 @@ You should see the automatic interactive API documentation provided by Swagger U
     <img src="images/swagger_docs.png">
 </p>
 
+## <b>Hardware setup</b>
+### 1. Load Micropython on the ESP32
+Checkout this [guide](https://docs.micropython.org/en/latest/esp32/tutorial/intro.html) on how to get started with MicroPython on the ESP32
+### 2. Install Ampy
+Ampy is a cli tool to interact with MicroPython board over a serial connection.
+```bash
+$ pip install adafruit-ampy
+```
+### 3. Load firmware files and run code
+Navigate to the hardware directory
+```
+$ cd hardware/
+```
+First create your wifi config module `config.py`and add your wifi credentials:
+
+```python
+WIFI_SSID = 'myssid'
+WIFI_PASSWD = 'mywifipassword'
+```
+For convenience you can set `AMPY_PORT` and `AMPY_BAUD` environment variables which will be used if the port parameter is not specified. To set these variables automatically each time you run ampy, copy them into a file named `.ampy`
+
+Connect your esp32 to your pc and load the firmware files
+```
+$ ampy put config.py
+$ ampy put ss1306.py
+$ ampy put main.py
+$ ampy ls
+/config.py
+/main.py
+/ssd1306.py
+```
+Wire up your display to the board and reset it and viola!
 ## <b>License and Copyright</b>
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=for-the-badge)](LICENSE)
 
