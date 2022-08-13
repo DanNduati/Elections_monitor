@@ -3,16 +3,24 @@
 Lets have fun with some election data.
 
 ## <b>Description</b>
-Scrape presidential election data off [Citizen Tv's election portal](https://elections.citizen.digital/). And provides a simple API interface to the data.
+Scrape presidential tally election data off either:
+1. [Citizen Tv's election portal](https://elections.citizen.digital/). 
+2. [BBC News](https://www.bbc.com/news/world-africa-62444316)
+
+And provides a simple API interface to the data.
 
 ## <b>Prerequisites</b>
 1. [Python](https://www.python.org/downloads/)
 2. [Docker and Docker Compose](https://docs.docker.com/get-docker/)
 
 ## <b>Setup</b>
+<details>
+<summary>Click to expand!</summary>
+
 ### Clone the repository
 ```bash
 $ git clone https://github.com/DanNduati/Elections_watch.git
+$ cd Elections_watch/
 ```
 ### 1. Local Installation
 #### Install dependencies
@@ -42,8 +50,9 @@ Schedule the scraper to run at your preferred duration as described in the local
 ```bash
 $ docker compose up -d --build
 ```
+</details>
 
-### 3.Check it
+### 3.Check the API
 #### 1. <b>Presidential Results endpoint</b>
 ```http
 GET /elections/
@@ -56,35 +65,48 @@ curl -X 'GET' \
 ```
 __Sample response__
 ```json
+
 {
   "data": [
     {
-      "CandidateName": "William Samoei Ruto",
-      "Votes": 6562405,
-      "Percentage": 49.33,
-      "Party": "Uda",
-      "UpdatedAt": "2022-08-12 18:00:20.767119"
+      "CandidateName": "William Ruto",
+      "Coalition": "Kenya Kwanza Alliance",
+      "Votes": 6395857,
+      "Percentage": "51.1%",
+      "Atleast25PercentOfCounty": "21/47",
+      "CandidateImage": "https://news.files.bbci.co.uk/include/vjafeast/642-kenya-presidential-elections-results/assets/app-project-assets/img/candidates/kka.png",
+      "UpdatedAt": "08/13/2022, 18:09:04 local time (GMT+3)",
+      "Source": "https://www.bbc.com/news/world-africa-62444316"
     },
     {
-      "CandidateName": "Raila  Odinga",
-      "Votes": 6553978,
-      "Percentage": 49.27,
-      "Party": "Azimio",
-      "UpdatedAt": "2022-08-12 18:00:20.767245"
+      "CandidateName": "Raila Odinga",
+      "Coalition": "Azimio la Umoja coalition",
+      "Votes": 6026207,
+      "Percentage": "48.2%",
+      "Atleast25PercentOfCounty": "19/47",
+      "CandidateImage": "https://news.files.bbci.co.uk/include/vjafeast/642-kenya-presidential-elections-results/assets/app-project-assets/img/candidates/alu.png",
+      "UpdatedAt": "08/13/2022, 18:09:04 local time (GMT+3)",
+      "Source": "https://www.bbc.com/news/world-africa-62444316"
     },
     {
-      "CandidateName": "George Luchiri Wajackoyah",
-      "Votes": 57840,
-      "Percentage": 0.43,
-      "Party": "Roots",
-      "UpdatedAt": "2022-08-12 18:00:20.767349"
+      "CandidateName": "George Wajackoyah",
+      "Coalition": "Roots Party",
+      "Votes": 56700,
+      "Percentage": "0.5%",
+      "Atleast25PercentOfCounty": "0/47",
+      "CandidateImage": "https://news.files.bbci.co.uk/include/vjafeast/642-kenya-presidential-elections-results/assets/app-project-assets/img/candidates/roots.png",
+      "UpdatedAt": "08/13/2022, 18:09:04 local time (GMT+3)",
+      "Source": "https://www.bbc.com/news/world-africa-62444316"
     },
     {
-      "CandidateName": "David Mwaure Waihiga",
-      "Votes": 29731,
-      "Percentage": 0.22,
-      "Party": "Agano",
-      "UpdatedAt": "2022-08-12 18:00:20.767455"
+      "CandidateName": "David Mwaure",
+      "Coalition": "Agano Party",
+      "Votes": 27802,
+      "Percentage": "0.2%",
+      "Atleast25PercentOfCounty": "0/47",
+      "CandidateImage": "https://news.files.bbci.co.uk/include/vjafeast/642-kenya-presidential-elections-results/assets/app-project-assets/img/candidates/agano.png",
+      "UpdatedAt": "08/13/2022, 18:09:04 local time (GMT+3)",
+      "Source": "https://www.bbc.com/news/world-africa-62444316"
     }
   ]
 }
