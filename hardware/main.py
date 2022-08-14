@@ -10,9 +10,11 @@ import ssd1306
 # Network settings
 wifi_ssid = config.WIFI_SSID
 wifi_password = config.WIFI_PASSWD
+
 # Election data api endpoint url
-URL = "http://17db-41-90-180-30.ngrok.io/election/"
-SLEEP_TIME = 1800000
+URL = "http://192.168.100.11:8000/election/"
+SLEEP_TIME = 900000
+
 # Oled Display
 i2c = machine.SoftI2C(scl=machine.Pin(22), sda=machine.Pin(21))
 oled_width = 128
@@ -31,21 +33,22 @@ def connect_wifi():
         oled.text("to WI-FI", 22, 30)
         oled.show()
         oled.fill(0)
-        utime.sleep(0.5)
         sta_if.active(True)
         sta_if.connect(wifi_ssid, wifi_password)
         while not sta_if.isconnected():
-            utime.sleep(1)
+            utime.sleep(0.5)
     print(f"Connected to {wifi_ssid}")
     print("Network config:", sta_if.ifconfig())
 
 
 def get_data(url):
-    resp = urequests.get(url)
-    if not resp.status_code == 200:
-        return
-    parsed = ujson.loads(resp.text)
-    return parsed["data"]
+    try:
+        resp = urequests.get(url)
+        parsed = ujson.loads(resp.text)
+    except Exception as e:
+        raise e
+    else:
+        return parsed["data"]
 
 
 # Continous horizontal scroll
@@ -66,7 +69,7 @@ def display_data(candidates_data):
             [
                 0,
                 num * 16,
-                f"{num+1}. {candidate_data['CandidateName'].split(' ')[1]} : {candidate_data['Votes']}",
+                f"{num+1}.{candidate_data['CandidateName'].split(' ')[1]}: {candidate_data['Votes']}({candidate_data['Percentage']})",
             ]
         )
     # scroll the results horizontally thrice
@@ -81,6 +84,6 @@ def main():
 
 
 main()
-# put the device to deepsleep for 30 minutes
+# put the device to deepsleep for 5 minutes
 print("Entering Deepsleep")
-machine.deepsleep(10000)  # 10 seconds for testing
+machine.deepsleep(SLEEP_TIME)
