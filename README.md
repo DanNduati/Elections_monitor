@@ -1,9 +1,7 @@
 <h1 align="center"> Presidential Elections Watch </h1>
-
 <p align="center">
-    <img height=500 src="images/hw_1.jpg">
+    <img src="images/demo.gif">
 </p>
-
 
 ## <b>Description</b>
 This is a Mechatronics hardware engineer's way of monitoring the presidential poll. The system is made up of three subsystems
@@ -130,6 +128,11 @@ You should see the automatic interactive API documentation provided by Swagger U
 </p>
 
 ## <b>Hardware setup</b>
+
+<p align="center">
+    <img height=500 src="images/hw_1.jpg">
+</p>
+
 ### 1. Load Micropython on the ESP32
 Checkout this [guide](https://docs.micropython.org/en/latest/esp32/tutorial/intro.html) on how to get started with MicroPython on the ESP32
 ### 2. Install Ampy
