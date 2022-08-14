@@ -130,7 +130,7 @@ You should see the automatic interactive API documentation provided by Swagger U
 ## <b>Hardware setup</b>
 
 <p align="center">
-    <img height=300 src="images/hw_1.jpg">
+    <img height=300 src="images/anotated.jpg">
 </p>
 
 ### 1. Load Micropython on the ESP32
