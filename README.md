@@ -16,7 +16,7 @@ Scrape presidential tally election data off either:
 
 public portals and stores this to a csv file.
 
-> :warning: This are not the official results. Please visit iebc.or.ke for more information.
+> :warning: These are not the official results. Please visit iebc.or.ke for more information.
 
 ### 2. API
 Provides a simple API interface to the scraped data. The api is built with [FastAPI](https://fastapi.tiangolo.com/)
@@ -220,7 +220,7 @@ MPY: soft reboot
 Connected to dan_wifi
 Network config: ('192.168.100.12', '255.255.255.0', '192.168.100.1', '192.168.100.1')
 ```
-You should see whatever exception error your board run to not me though lol.
+You should see whatever exception error your board run into, not me though :wink:.
 </details>
 
 ## <b>License and Copyright</b>
