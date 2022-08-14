@@ -1,4 +1,4 @@
-<h1 align="center"> Presidential Elections Watch </h1>
+<h1 align="center"> Presidential Elections Monitor </h1>
 <p align="center">
     <img src="images/demo.gif">
 </p>
@@ -130,7 +130,7 @@ You should see the automatic interactive API documentation provided by Swagger U
 ## <b>Hardware setup</b>
 
 <p align="center">
-    <img height=500 src="images/hw_1.jpg">
+    <img height=300 src="images/hw_1.jpg">
 </p>
 
 ### 1. Load Micropython on the ESP32
