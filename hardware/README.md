@@ -1,6 +1,6 @@
-<h1 align="center"> Presidential Elections Watch Hardware</h1>
+<h1 align="center"> Presidential Elections Monitor Hardware</h1>
 
-The hardware is made of:
+The hardware consists of:
 1. [ESP32](https://www.espressif.com/en/products/socs/esp32)
 2. SSD1306 OLED Display
 
@@ -17,5 +17,6 @@ The esp32 runs micropython firmware that basically does the following:
     <img height=500 src="../images/hw_3.jpg">
 </p>
 
+### 4. Put the device to sleep for 30 minutes
 
 Simple right!
